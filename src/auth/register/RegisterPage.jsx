@@ -1,10 +1,11 @@
-import { useContext } from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../ContextApi";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../hooks/auth";
 
 const RegisterPage = () => {
-  const { registerUser } = useContext(AuthContext);
-  console.log(registerUser);
+  const { registerUser, setLoading } = auth();
+  const navigate = useNavigate();
+
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +19,7 @@ const RegisterPage = () => {
         console.log(response);
         const user = response.user;
         if (response.user) {
+          navigate("/login");
           toast.success("successfully register !");
           form.reset();
         }
@@ -65,16 +67,19 @@ const RegisterPage = () => {
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-primary">Register</button>
           </div>
         </form>
+        <div>
+          <p className="text-center mb-8">
+            You have a account .{" "}
+            <Link to="/login" className="text-car-review underline">
+              LOGIN
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
