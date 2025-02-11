@@ -8,6 +8,8 @@ import RootsLayouts from "../Layouts/RootsLayouts";
 import AboutPage from "../pages/AboutPage";
 import BlogPage from "../pages/BlogPage";
 import ContactPage from "../pages/ContactPage";
+import ErrorPage from "../pages/ErrorPage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import HomePage from "../pages/HomePage";
 import ServicePage from "../pages/ServicePage";
 
@@ -15,6 +17,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootsLayouts />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -45,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterPage />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPasswordPage />,
       },
     ],
   },
