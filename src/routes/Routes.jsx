@@ -12,6 +12,8 @@ import ErrorPage from "../pages/ErrorPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import HomePage from "../pages/HomePage";
 import ServicePage from "../pages/ServicePage";
+import ProfilePage from "./../pages/ProfilePage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +35,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <BlogPage />,
+        element: (
+          <PrivateRoutes>
+            <BlogPage />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <ProfilePage />
+          </PrivateRoutes>
+        ),
       },
 
       // auth
